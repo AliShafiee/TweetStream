@@ -7,6 +7,7 @@ target 'TweetStream' do
   pod 'Alamofire', '~> 5.0'
   pod 'RxSwift', '6.1.0'
   pod 'RxCocoa', '6.1.0'
+  pod 'RxDataSources', '~> 5.0'
 
   target 'TweetStreamTests' do
     inherit! :search_paths

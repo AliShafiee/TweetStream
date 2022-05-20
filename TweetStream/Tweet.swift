@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RxDataSources
 
 struct Tweet: Codable, Identifiable {
     
@@ -26,5 +27,33 @@ struct Tweet: Codable, Identifiable {
     init(id: String, text: String) {
         self.id = id
         self.text = text
+    }
+}
+
+extension Tweet: IdentifiableType, Equatable {
+    typealias Identity = String
+    
+    var identity: Identity {
+        return text
+    }
+}
+
+struct SectionOfTweet {
+    var header: String
+    var items: [Item]
+}
+
+extension SectionOfTweet: AnimatableSectionModelType {
+   
+    typealias Item = Tweet
+    typealias Identity = String
+
+    init(original: SectionOfTweet, items: [Item]) {
+        self = original
+        self.items = items
+    }
+    
+    var identity: String {
+        return header
     }
 }
