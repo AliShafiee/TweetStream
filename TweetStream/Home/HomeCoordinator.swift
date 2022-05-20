@@ -18,9 +18,14 @@ class HomeCoordinator: Coordinator {
     }
     
     func start() {
-        let homeVc = HomeViewController()
+        let homeVc = HomeViewController(coordinator: self)
         self.navigationController.setViewControllers([homeVc], animated: true)
         self.window.rootViewController = self.navigationController
         window.makeKeyAndVisible()
+    }
+    
+    func coordinateToTweetDetail(tweet: Tweet) {
+        let coordinator = TweetDetailCoordinator(navigationController: navigationController, tweet: tweet)
+        coordinator.start()
     }
 }

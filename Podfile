@@ -4,8 +4,10 @@
 target 'TweetStream' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-  pod 'Alamofire'
-  
+  pod 'Alamofire', '~> 5.0'
+  pod 'RxSwift', '6.1.0'
+  pod 'RxCocoa', '6.1.0'
+
   target 'TweetStreamTests' do
     inherit! :search_paths
     # Pods for testing
