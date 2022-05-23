@@ -25,7 +25,7 @@ class TweetCell: UITableViewCell {
         } else {
             userNameContainerView.isHidden = true
         }
-       
+        
         guard animated else { return }
         contentBackground.backgroundColor = UIColor(red: 85.0/255.0, green: 211.0/255.0, blue: 255.0/255.0, alpha: 1.0)
         UIView.animate(withDuration: 0.8, delay: 0.0, options: .curveEaseInOut) { [weak self] in

@@ -26,8 +26,16 @@ class TweetDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.largeTitleDisplayMode = .never
         
+        setupNav()
+        setupView()
+    }
+    
+    func setupNav() {
+        navigationItem.largeTitleDisplayMode = .never
+    }
+    
+    func setupView() {
         tweetLabel.text = tweetViewModel.text
         if let name = tweetViewModel.name,
            let userName = tweetViewModel.username {

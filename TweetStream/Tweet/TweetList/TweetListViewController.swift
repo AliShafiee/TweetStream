@@ -13,18 +13,17 @@ protocol TweetListDelegate: NSObject {
 }
 
 class TweetListViewController: UIViewController {
-
+    
     @IBOutlet weak var loadingView: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     let viewModel = TweetListViewModel()
     let cellReuseId = "tweetCellReuseId"
     weak var delegate: TweetListDelegate?
-    var showedTweetsIndex = Set<Int>()
     private var subscriptions = Set<AnyCancellable>()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupTableView()
         setupBinding()
     }
@@ -41,34 +40,34 @@ class TweetListViewController: UIViewController {
     
     func setupBinding() {
         viewModel.$tweetViewModels
-           .receive(on: DispatchQueue.main)
-           .sink { [weak self] items in
-               guard let self = self else { return }
-               if self.viewModel.tweetViewModels.isEmpty {
-                   self.tableView.reloadData()
-                   return
-               }
-               self.tableView.beginUpdates()
-               self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .top)
-               self.tableView.endUpdates()
-           }
-           .store(in: &subscriptions)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] items in
+                guard let self = self else { return }
+                if self.viewModel.tweetViewModels.isEmpty {
+                    self.tableView.reloadData()
+                    return
+                }
+                self.tableView.beginUpdates()
+                self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .top)
+                self.tableView.endUpdates()
+            }
+            .store(in: &subscriptions)
         
         viewModel.$showLoading
-           .receive(on: DispatchQueue.main)
-           .sink { [weak self] showLoading in
-               guard let self = self else { return }
-               if showLoading {
-                   self.loadingView.isHidden = false
-               } else {
-                   self.loadingView.isHidden = true
-               }
-           }
-           .store(in: &subscriptions)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] showLoading in
+                guard let self = self else { return }
+                if showLoading {
+                    self.loadingView.isHidden = false
+                } else {
+                    self.loadingView.isHidden = true
+                }
+            }
+            .store(in: &subscriptions)
         
         viewModel.streamTweets()
     }
-
+    
 }
 
 extension TweetListViewController: UITableViewDelegate, UITableViewDataSource {

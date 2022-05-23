@@ -55,7 +55,6 @@ class HomeViewController: UIViewController {
                 guard let self = self, let query = query, !query.isEmpty else { return }
                 self.tweetListVc.viewModel.searchTextChanged(query)
             }.store(in: &subscriptions)
-        
     }
 }
 

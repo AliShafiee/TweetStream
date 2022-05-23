@@ -8,7 +8,7 @@
 import Foundation
 
 enum TwitterApiService: RequestProtocol {
-        
+    
     case stream
     case retrieveRules
     case deleteRules(rules: [TweetStreamRule])
@@ -92,7 +92,7 @@ enum TwitterApiService: RequestProtocol {
         switch self {
         case .stream:
             return .stream(throttleDuration: 3)
-
+            
         default:
             return .data
         }

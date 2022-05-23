@@ -37,7 +37,7 @@ extension RequestProtocol {
     }
     
     var requestHeaders: ReaquestHeaders? {
-        return ["Authorization": "Bearer \(getBearerToken())",
+        return ["Authorization": "Bearer \(getBearerToken().aesDecrypt() ?? "")",
                 "Content-Type": "application/json"]
     }
     

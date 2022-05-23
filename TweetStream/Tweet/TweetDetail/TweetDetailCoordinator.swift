@@ -21,5 +21,4 @@ class TweetDetailCoordinator: Coordinator {
         let vc = TweetDetailViewController(tweetViewModel: tweetViewModel)
         navigationController.pushViewController(vc, animated: true)
     }
-    
 }

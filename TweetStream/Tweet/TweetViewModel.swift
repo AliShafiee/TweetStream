@@ -11,7 +11,7 @@ struct TweetViewModel {
     let text: String
     let name: String?
     let username: String?
-
+    
     init(tweet: Tweet) {
         self.text = tweet.text
         self.name = tweet.users.first?.name
