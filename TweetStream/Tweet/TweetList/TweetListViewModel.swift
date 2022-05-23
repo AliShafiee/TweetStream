@@ -14,7 +14,7 @@ class TweetListViewModel {
     @Published var tweetViewModels: [TweetViewModel] = []
     @Published var rulesUpdated: Bool = false
     
-    func streamTweets() {
+    func streamTweets(completion: ((Result<[TweetStreamRule], APIError>) -> Void)? = nil) {
         showLoading = true
         NetworkAgent.shared.request(TwitterApiService.stream, as: Tweet.self) { [weak self] result in
             guard let self = self else { return }

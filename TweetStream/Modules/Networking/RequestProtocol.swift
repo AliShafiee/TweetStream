@@ -12,7 +12,7 @@ typealias ReaquestHeaders = [String: String]
 typealias RequestParameters = [String: Any?]
 typealias QueryParameters = [String: Any?]
 
-public enum RequestType {
+public enum RequestType: Equatable {
     case data
     case stream(throttleDuration: Double)
 }
@@ -29,7 +29,7 @@ protocol RequestProtocol: URLRequestConvertible {
 
 extension RequestProtocol {
     var baseUrl: String {
-        return "https://api.twitter.com/"
+        return AppConstants.baseUrl
     }
     
     var method: RequestMethod {

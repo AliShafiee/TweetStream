@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-enum APIError: Error {
+enum APIError: Error, Equatable {
     /// No data received from the server.
     case noData
     

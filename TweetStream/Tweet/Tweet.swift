@@ -26,6 +26,12 @@ struct Tweet: Codable {
         text = try dataContainer.decode(String.self, forKey: .text)
         users = try includesContainer.decode([TweetUser].self, forKey: .users)
     }
+    
+    init(id: String, text: String, users: [TweetUser]) {
+        self.id = id
+        self.text = text
+        self.users = users
+    }
 }
 
 struct TweetUser: Codable {
@@ -39,5 +45,11 @@ struct TweetUser: Codable {
         id = try container.decode(String.self, forKey: .id)
         name = try container.decode(String.self, forKey: .name)
         username = try container.decode(String.self, forKey: .username)
+    }
+    
+    init(id: String, name: String, username: String) {
+        self.id = id
+        self.name = name
+        self.username = username
     }
 }
