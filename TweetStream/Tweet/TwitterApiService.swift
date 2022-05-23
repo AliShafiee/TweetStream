@@ -11,8 +11,8 @@ enum TwitterApiService: RequestProtocol {
         
     case stream
     case retrieveRules
-    case addRules(ids: [String])
-    case deleteRules(ids: [String])
+    case deleteRules(rules: [TweetStreamRule])
+    case addRules(rules: [TweetStreamRule])
     
     var path: String {
         switch self {
@@ -54,17 +54,24 @@ enum TwitterApiService: RequestProtocol {
         case .retrieveRules:
             return nil
             
-        case .addRules(let ids):
+        case .addRules(let rules):
             var params = [String: Any?]()
-            params["add"] = ids
+            
+            var rulesParams = [[String: Any?]]()
+            for rule in rules {
+                if let value = rule.value, !value.isEmpty {
+                    var ruleParam = [String: Any?]()
+                    ruleParam["value"] = value
+                    rulesParams.append(ruleParam)
+                }
+            }
+            params["add"] = rulesParams
             return params
             
-        case .deleteRules(let ids):
+        case .deleteRules(let rules):
             var params = [String: Any?]()
-            
             var idsParams = [String: Any?]()
-            idsParams["ids"] = ids
-            
+            idsParams["ids"] = rules.compactMap({ $0.id })
             params["delete"] = idsParams
             return params
         }

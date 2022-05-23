@@ -6,13 +6,15 @@
 //
 
 import UIKit
+import Combine
 
 class HomeViewController: UIViewController {
 
     let tweetListVc = TweetListViewController()
     let coordinator: HomeCoordinator
     @IBOutlet weak var tweetListContainerView: UIView!
-    
+    private var subscriptions = Set<AnyCancellable>()
+
     init(coordinator: HomeCoordinator) {
         self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
@@ -38,17 +40,22 @@ class HomeViewController: UIViewController {
         title = "Tweet Stream"
         navigationController?.navigationBar.prefersLargeTitles = true
         let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
+        searchController.searchBar.placeholder = "Search Keywords..."
         navigationItem.searchController = searchController
+        setupSearchBarListener(searchController)
     }
-
-}
-
-extension HomeViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text,
-        let tweetListVc = searchController.searchResultsController as? TweetListViewController else { return }
-        tweetListVc.viewModel.searchTextChanged(text)
+    
+    func setupSearchBarListener(_ searchController: UISearchController) {
+        let publisher = NotificationCenter.default.publisher(for: UISearchTextField.textDidChangeNotification,
+                                                             object: searchController.searchBar.searchTextField)
+        publisher
+            .map { ($0.object as! UISearchTextField).text }
+            .debounce(for: .milliseconds(800), scheduler: RunLoop.main)
+            .sink { [weak self] query in
+                guard let self = self, let query = query, !query.isEmpty else { return }
+                self.tweetListVc.viewModel.searchTextChanged(query)
+            }.store(in: &subscriptions)
+        
     }
 }
 

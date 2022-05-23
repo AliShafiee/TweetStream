@@ -43,7 +43,7 @@ class NetworkStreamOperation<T: Decodable>: AsyncOperation {
                         let result = try self.decoder.decode(T.self, from: data)
                         self.completionHandler(.success(result))
                     } catch {
-                        print("\(error)\nerror in decoding = \(String(data: data, encoding: .utf8) ?? "") - \(T.self)")
+//                        print("\(error)\nerror in decoding = \(String(data: data, encoding: .utf8) ?? "") - \(T.self)")
                         self.completionHandler(.failure(.decodingError))
                     }
                 case .failure(let error):
