@@ -70,10 +70,21 @@ enum TwitterApiService: RequestProtocol {
         }
     }
     
+    var queryParameters: QueryParameters? {
+        switch self {
+        case .stream:
+            return ["expansions": "author_id",
+                    "user.fields": "name,username"]
+            
+        default:
+            return nil
+        }
+    }
+    
     var requestType: RequestType {
         switch self {
         case .stream:
-            return .stream
+            return .stream(throttleDuration: 3)
 
         default:
             return .data

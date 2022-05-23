@@ -7,7 +7,6 @@
 
 import UIKit
 import Combine
-import RxDataSources
 
 protocol TweetListDelegate: NSObject {
     func onTweetSelected(tweet: Tweet)

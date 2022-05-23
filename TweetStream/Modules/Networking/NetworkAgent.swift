@@ -16,8 +16,8 @@ class NetworkAgent {
         var networkOperation: AsyncOperation
         
         switch request.requestType {
-        case .stream:
-            networkOperation = NetworkStreamOperation(request: request, responseType: T.self, completion: completion)
+        case .stream(let throttleDuration):
+            networkOperation = NetworkStreamOperation(request: request, responseType: T.self, throttleDuration: throttleDuration, completion: completion)
 
         case .data:
             networkOperation = NetworkOperation(request, responseType: T.self, completion: completion)

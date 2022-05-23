@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 enum APIError: Error {
     /// No data received from the server.
@@ -65,6 +66,24 @@ extension Error {
 
         default:
             return .internalServerError
+        }
+    }
+}
+
+extension AFError {
+    
+    func APIError() -> APIError {
+        switch self.responseCode ?? 200 {
+        case 200...299:
+            return .unknown
+        case 401:
+            return .tokenError
+        case 400...499:
+            return .badRequest(msg: self.errorDescription ?? "bad request!!!", status: self.responseCode ?? 200)
+        case 500...599:
+            return .serverError(msg: self.errorDescription ?? "server error!!!", status: self.responseCode ?? 200)
+        default:
+            return .unknown
         }
     }
 }

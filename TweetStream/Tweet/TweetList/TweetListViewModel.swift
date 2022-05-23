@@ -17,15 +17,22 @@ class TweetListViewModel {
         showLoading = true
         NetworkAgent.shared.request(TwitterApiService.stream, as: Tweet.self) { [weak self] result in
             guard let self = self else { return }
-            self.showLoading = false
             switch result {
             case .success(let tweet):
+                self.showLoading = false
                 let tweetVm = TweetViewModel(tweet: tweet)
                 self.tweetViewModels.insert(tweetVm, at: 0)
 
-                break
             case .failure(let error):
                 print(error)
+                switch error {
+                case .decodingError:
+                    break
+                    
+                default:
+                    self.showLoading = false
+
+                }
             }
         }
     }

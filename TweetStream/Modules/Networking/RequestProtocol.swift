@@ -14,7 +14,7 @@ typealias QueryParameters = [String: Any?]
 
 public enum RequestType {
     case data
-    case stream
+    case stream(throttleDuration: Double)
 }
 
 protocol RequestProtocol: URLRequestConvertible {
