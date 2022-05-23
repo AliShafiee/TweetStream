@@ -36,8 +36,8 @@ class HomeViewController: UIViewController {
     
     func setupNav() {
         title = "Tweet Stream"
-        let searchController = UISearchController(searchResultsController: nil)
         navigationController?.navigationBar.prefersLargeTitles = true
+        let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
     }
@@ -53,7 +53,7 @@ extension HomeViewController: UISearchResultsUpdating {
 }
 
 extension HomeViewController: TweetListDelegate {
-    func onTweetSelected(tweet: Tweet) {
-        coordinator.coordinateToTweetDetail(tweet: tweet)
+    func onTweetSelected(tweetViewModel: TweetViewModel) {
+        coordinator.coordinateToTweetDetail(tweetViewModel: tweetViewModel)
     }
 }

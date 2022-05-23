@@ -10,7 +10,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TweetDetailViewController" customModule="TweetStream" customModuleProvider="target">
             <connections>
+                <outlet property="nameLabel" destination="rvG-4k-ARc" id="L4y-gd-0e7"/>
                 <outlet property="tweetLabel" destination="wmF-Dd-xrv" id="LNR-Dv-qrL"/>
+                <outlet property="userNameLabel" destination="i7M-nj-EVM" id="u9P-JM-pDt"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,18 +22,35 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wmF-Dd-xrv">
-                    <rect key="frame" x="16" y="60" width="382" height="20.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <rect key="frame" x="16" y="93" width="382" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rvG-4k-ARc">
+                    <rect key="frame" x="16" y="60" width="44.5" height="21"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i7M-nj-EVM">
+                    <rect key="frame" x="68.5" y="61" width="329.5" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="0.36470588235294116" green="0.4392156862745098" blue="0.50196078431372548" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="i7M-nj-EVM" firstAttribute="leading" secondItem="rvG-4k-ARc" secondAttribute="trailing" constant="8" id="08f-5m-SXM"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wmF-Dd-xrv" secondAttribute="trailing" constant="16" id="HNN-ra-Vwr"/>
                 <constraint firstItem="wmF-Dd-xrv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="TdY-Aa-7zN"/>
-                <constraint firstItem="wmF-Dd-xrv" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="bnR-5o-pYs"/>
+                <constraint firstItem="i7M-nj-EVM" firstAttribute="centerY" secondItem="rvG-4k-ARc" secondAttribute="centerY" id="bCW-wL-fOY"/>
+                <constraint firstItem="wmF-Dd-xrv" firstAttribute="top" secondItem="rvG-4k-ARc" secondAttribute="bottom" constant="12" id="lfu-tH-Fhn"/>
+                <constraint firstItem="rvG-4k-ARc" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="mW9-HN-bON"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="i7M-nj-EVM" secondAttribute="trailing" constant="16" id="qIq-CD-1Rf"/>
+                <constraint firstItem="rvG-4k-ARc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="y57-hO-YMg"/>
             </constraints>
             <point key="canvasLocation" x="139" y="100"/>
         </view>

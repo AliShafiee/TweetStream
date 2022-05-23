@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 protocol TweetListDelegate: NSObject {
-    func onTweetSelected(tweet: Tweet)
+    func onTweetSelected(tweetViewModel: TweetViewModel)
 }
 
 class TweetListViewController: UIViewController {
@@ -80,5 +80,9 @@ extension TweetListViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseId, for: indexPath) as! TweetCell
         cell.setupView(tweetViewModel: viewModel.tweetViewModels[indexPath.row], animated: indexPath.row == 0)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.onTweetSelected(tweetViewModel: viewModel.tweetViewModels[indexPath.row])
     }
 }

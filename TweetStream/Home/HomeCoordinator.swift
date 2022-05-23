@@ -24,8 +24,8 @@ class HomeCoordinator: Coordinator {
         window.makeKeyAndVisible()
     }
     
-    func coordinateToTweetDetail(tweet: Tweet) {
-        let coordinator = TweetDetailCoordinator(navigationController: navigationController, tweet: tweet)
+    func coordinateToTweetDetail(tweetViewModel: TweetViewModel) {
+        let coordinator = TweetDetailCoordinator(navigationController: navigationController, tweetViewModel: tweetViewModel)
         coordinator.start()
     }
 }

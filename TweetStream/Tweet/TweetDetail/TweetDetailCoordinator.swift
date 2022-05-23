@@ -10,15 +10,15 @@ import UIKit
 class TweetDetailCoordinator: Coordinator {
     
     var navigationController: UINavigationController
-    let tweet: Tweet
+    let tweetViewModel: TweetViewModel
     
-    init(navigationController: UINavigationController, tweet: Tweet) {
+    init(navigationController: UINavigationController, tweetViewModel: TweetViewModel) {
         self.navigationController = navigationController
-        self.tweet = tweet
+        self.tweetViewModel = tweetViewModel
     }
     
     func start() {
-        let vc = TweetDetailViewController(tweet: tweet)
+        let vc = TweetDetailViewController(tweetViewModel: tweetViewModel)
         navigationController.pushViewController(vc, animated: true)
     }
     

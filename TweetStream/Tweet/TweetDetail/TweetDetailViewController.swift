@@ -9,12 +9,14 @@ import UIKit
 
 class TweetDetailViewController: UIViewController {
 
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var tweetLabel: UILabel!
     
-    let tweet: Tweet
+    let tweetViewModel: TweetViewModel
     
-    init(tweet: Tweet) {
-        self.tweet = tweet
+    init(tweetViewModel: TweetViewModel) {
+        self.tweetViewModel = tweetViewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -24,8 +26,16 @@ class TweetDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        tweetLabel.text = tweet.text
+        navigationItem.largeTitleDisplayMode = .never
+        
+        tweetLabel.text = tweetViewModel.text
+        if let name = tweetViewModel.name,
+           let userName = tweetViewModel.username {
+            nameLabel.text = name
+            userNameLabel.text = userName
+        } else {
+            nameLabel.isHidden = true
+            userNameLabel.isHidden = true
+        }
     }
-
 }
