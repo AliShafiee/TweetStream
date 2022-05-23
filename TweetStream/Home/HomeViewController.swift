@@ -36,7 +36,7 @@ class HomeViewController: UIViewController {
     
     func setupNav() {
         title = "Tweet Stream"
-        let searchController = UISearchController(searchResultsController: tweetListVc)
+        let searchController = UISearchController(searchResultsController: nil)
         navigationController?.navigationBar.prefersLargeTitles = true
         searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
